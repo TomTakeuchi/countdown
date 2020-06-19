@@ -1,0 +1,167 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>countdown</title>
+<!-- <link href="../../_common/images/au.webp" rel="shortcut icon"> -->
+<!-- <link href="https://fonts.googleapis.com/css?family=M+PLUS+1p:400,500" rel="stylesheet"> -->
+<link href="https://fonts.googleapis.com/css?family=Sacramento&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Girassol&display=swap" rel="stylesheet">
+<link href="../../_common/css/style.css" rel="stylesheet">
+<style media="screen">
+h2  {
+    font-family: 'Girassol', cursive;
+    font-size: 2rem;
+}
+.timer {
+    font-family: 'Girassol', cursive;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+}
+.timer span {
+    font-size: 60px;
+}
+
+.timers{
+  font-family: inherit;
+  text-align: center;
+}
+
+.timers span {
+  font-size: 70px;
+  font-family: 'Girassol', cursive;
+}
+.www{
+  color:red;
+}
+
+.tom {
+
+  padding-left: 30px;
+
+  text-align: center;
+}
+
+h1  {
+    text-align: center;
+    font-size: 90px;
+}
+
+
+#days{
+  color: #000099;
+}
+
+#hours{
+  color: yellow;
+}
+
+#mins{
+  color: green;
+}
+
+#secs{
+  color: red;
+}
+
+.abc{
+  text-align: center;
+}
+</style>
+</head>
+<body>
+<header>
+<div class="container">
+<h1>Study abroad</h1>
+<h2>in Australia</h2>
+</div><!-- /.container -->
+</header>
+<main>
+<div class="container">
+<section>
+
+<div class="tom">
+  <h1 ><span></span>
+  TOKYO<span class=www>●</span>2020</h1>
+  <p class="timers"><span id=days></span> DAY<span id=hours></span> HRS<span id="mins"></span> MIN<span id="secs"></span> SEC</p>
+</div>
+  <br>
+  <br>
+
+
+
+</section>
+</div><!-- /.container -->
+</main>
+<footer>
+<div class="container">
+<p>Tom Takeuchi</p>
+</div><!-- /.container -->
+</footer>
+<script>
+`use strict`;
+
+function countdown(due){
+  const now=new Date();
+
+  const rest=due.getTime()-now.getTime();
+  const sec=Math.floor(rest/1000)%60;
+  const min=Math.floor(rest/1000/60)%60;
+  const hours=Math.floor(rest/1000/60/60)%24;
+  const days=Math.floor(rest/1000/60/60/24);
+  const count=[days,hours,min,sec];
+
+  return count;
+}
+
+let goals=new Date(2020,6,24,20);
+/*goal.setHours(23);
+goal.setMinutes(59);
+goal.setSeconds(59);*/
+
+function recalc(){
+  const counter=countdown(goals);
+  // const time=`${counter[1]}時間${counter[2]}分${counter[3]}秒`;
+  // document.getElementById(`timer`).textContent=time;
+  document.getElementById(`days`).textContent=counter[0];
+  document.getElementById(`hours`).textContent=counter[1];
+  document.getElementById(`mins`).textContent=String(counter[2]).padStart(2,`0`);
+  document.getElementById(`secs`).textContent=String(counter[3]).padStart(2,`0`);
+
+  refresh();
+}
+
+function refresh(){
+  setTimeout(recalc,1000);
+}
+
+recalc();
+
+
+
+let goal=new Date(2020,6,24,20);
+
+function recalcs(){
+  const counters=countdown(goals);
+  document.getElementById(`days`).textContent=counters[0];
+  document.getElementById(`hours`).textContent=String(counters[1]).padStart(2,`0`);
+  document.getElementById(`mins`).textContent=String(counters[2]).padStart(2,`0`);
+  document.getElementById(`secs`).textContent=String(counters[3]).padStart(2,`0`);
+  refreshs();
+}
+
+function refreshs(){
+  setTimeout(recalcs,1000);
+}
+
+recalcs();
+
+
+
+
+
+</script>
+</body>
+</html>
